@@ -1,0 +1,138 @@
+{
+  "info": {
+    "name": "Mini Shop Backend API",
+    "description": "Để test Session tự động, bạn chỉ cần chạy theo thứ tự: Login -> Profile -> Carts. Đảm bảo cấu hình Postman không chặn Cookies.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. GET Trang chủ (/)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "2. POST Thiết lập Theme Light/Dark",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "http://localhost:8080/set-theme/dark",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["set-theme", "dark"]
+        }
+      }
+    },
+    {
+      "name": "3. POST Đăng nhập",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "http://localhost:8080/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["login"]
+        },
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "text"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. GET Trang Profile (cần Login)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/profile",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["profile"]
+        }
+      }
+    },
+    {
+      "name": "5. GET Xem Sản Phẩm",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/products",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "products"]
+        }
+      }
+    },
+    {
+      "name": "6. POST Thêm vào giỏ hàng",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "http://localhost:8080/api/cart",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "cart"]
+        },
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "productId",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "quantity",
+              "value": "2",
+              "type": "text"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "7. GET Trang admin",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/admin",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "admin"]
+        }
+      }
+    },
+    {
+      "name": "8. POST Đăng xuất",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "http://localhost:8080/logout",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["logout"]
+        }
+      }
+    }
+  ]
+}
