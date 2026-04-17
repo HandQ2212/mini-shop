@@ -4,6 +4,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,13 +14,13 @@ import java.util.Map;
 public class HomeController {
 
     @GetMapping
-    public Map<String, Object> home(HttpSession session, 
+    public Map<String, Object> home(HttpSession session,
                                     @CookieValue(value = "theme", defaultValue = "light") String theme) {
         Map<String, Object> response = new HashMap<>();
         response.put("title", "Mini Profile App");
         response.put("theme", theme);
-        
-        String username = (String) session.getAttribute("username");
+
+        String username = session.getAttribute("username") == null ? null : (String) session.getAttribute("username");
         if (username != null) {
             response.put("message", "Xin chào, " + username);
         } else {
@@ -28,7 +29,7 @@ public class HomeController {
         return response;
     }
 
-    @PostMapping("/set-theme/{theme}")
+    @RequestMapping(value = "/set-theme/{theme}", method = {RequestMethod.GET, RequestMethod.POST})
     public Map<String, String> setTheme(@PathVariable String theme, HttpServletResponse response) {
         Map<String, String> result = new HashMap<>();
         if (!"light".equals(theme) && !"dark".equals(theme)) {
